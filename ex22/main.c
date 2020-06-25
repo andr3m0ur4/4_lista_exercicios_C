@@ -13,49 +13,30 @@ main() {
 
     setlocale(LC_ALL, "");
 
-    int numero, cont_1 = 0, cont_2 = 0, cont_3 = 0, cont_4 = 0, cont_5 = 0, maior = 0, valor;
+    int numero, num_anterior = 0, num_repeticao, qtd_repeticao = 0, maior_repeticao = 0;
 
     srand(time(NULL));
 
     for (int i = 0; i < 30; i++) {
         numero = (rand() % 5) + 1;
-        printf("%d\n", numero);
+        printf("%d - ", numero);
 
-        if (numero == 1) {
-            cont_1++;
-            if (cont_1 > maior) {
-                maior = cont_1;
-                valor = 1;
-            }
-        } else if (numero == 2) {
-            cont_2++;
-            if (cont_2 > maior) {
-                maior = cont_2;
-                valor = 2;
-            }
-        } else if (numero == 3) {
-            cont_3++;
-            if (cont_3 > maior) {
-                maior = cont_3;
-                valor = 3;
-            }
-        } else if (numero == 4) {
-            cont_4++;
-            if (cont_4 > maior) {
-                maior = cont_4;
-                valor = 4;
-            }
+        if (numero == num_anterior) {
+            qtd_repeticao++;
         } else {
-            cont_5++;
-            if (cont_5 > maior) {
-                maior = cont_5;
-                valor = 5;
-            }
+            qtd_repeticao = 1;
         }
+
+        if (qtd_repeticao > maior_repeticao) {
+            maior_repeticao = qtd_repeticao;
+            num_repeticao = numero;
+        }
+
+        num_anterior = numero;
     }
 
-    printf("Número que mais se repete sequencialmente: %d\n", valor);
-    printf("Quantidade de vezes: %d\n", maior);
+    printf("\nNúmero que mais se repete sequencialmente: %d\n", num_repeticao);
+    printf("Quantidade de vezes: %d\n", maior_repeticao);
 
     system("pause");
 }
